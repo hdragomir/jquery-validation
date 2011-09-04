@@ -60,3 +60,21 @@ test("read messages from metadata, with meta option specified, but no metadata i
 	});
 	ok(!form.valid(), "not valid");
 });
+
+test("Add empty class to error labels if message is empty", function(){
+    var form = $("#testForm1clean");
+    form.validate({
+        "rules": {
+            firstname: {
+                "required": true
+            }
+        },
+        "messages": {
+            firstname: {
+                required: ""
+            }
+        }
+    });
+    ok(!form.valid(), "form should be invalid");
+    equals(form.find('label[generated=true].empty').size(), 1);
+});

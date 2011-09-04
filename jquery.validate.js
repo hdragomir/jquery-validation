@@ -662,6 +662,7 @@ $.extend($.validator, {
 					? label.addClass( this.settings.success )
 					: this.settings.success( label );
 			}
+            label.toggleClass('empty', !message);
 			this.toShow = this.toShow.add(label);
 		},
 
