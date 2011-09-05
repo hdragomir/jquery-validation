@@ -588,5 +588,29 @@ test('creditcardtypes, mastercard', function() {
 	testCardTypeByNumber("4111-1111-1111-1111", "VISA", false);
 });
 
+test('checkForm', function(){
+    var validator = $('#userForm').validate({
+           "messages": {
+               "username": {
+                   required: "error message"
+               }
+           }
+        }),
+        isValid = validator.checkForm();
+    ok(!isValid, "form should not be valid");
+    equals($('#userForm').find('label[generated]').size(), 0, "No errors should be triggered.");
+
+    $('#userForm').bind('keyup change', function(ev){
+        validator.checkForm();
+        equals($('#userForm').find('label[generated]').size(), 0, "No errors should be triggered.");
+    });
+
+    $('#userForm').find('#username').val('aa');
+    $('#userForm').trigger('change');
+    $('#userForm').find('#username').val('');
+    $('#userForm').trigger('change');
+    
+});
+
 })(jQuery);
 
