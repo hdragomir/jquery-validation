@@ -1015,7 +1015,7 @@ $.extend($.validator, {
 		// http://docs.jquery.com/Plugins/Validation/Methods/email
 		email: function(value, element) {
 			// contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
-			return this.optional(element) || /^([\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$/.test(value);
+			return this.optional(element) || /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/i.test(value);
 		},
 
 		// http://docs.jquery.com/Plugins/Validation/Methods/url
