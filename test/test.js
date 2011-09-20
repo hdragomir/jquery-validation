@@ -1186,3 +1186,21 @@ test("ignore hidden elements at start", function(){
     $('#userForm [name=username]').show();
     ok(! validate.form(), "form should be invalid when required element is visible");
 });
+
+test('type=email gets validated correctly', function(){
+    var form = $('#signupFormEmail');
+
+    var validate = form.validate({rules: {
+        "useremail": {
+            email: true,
+            required: true
+        }
+    }});
+
+    form.get(0).reset();
+    ok(! validate.form(), 'should be invalid at start');
+    form.find('#useremail').val('horia@horia.me');
+    ok(validate.form(), 'form should be valid with proper email, though');
+});
+
+
